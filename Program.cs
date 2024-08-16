@@ -16,9 +16,9 @@ namespace Stopwatch
 
       Console.WriteLine("s = Segundos");
       Console.WriteLine("m = Minutos");
-      Console.WriteLine("\n0 = Sair");
+      Console.WriteLine("\n00 = Sair");
       Console.WriteLine("-------------------");
-      Console.WriteLine("Por favor, insira quanto e como deseja contar:");
+      Console.WriteLine("Por favor, insira quanto e como deseja contar:\n");
 
       string data = Console.ReadLine().ToLower();
       char type = char.Parse(data.Substring(data.Length - 1, 1));
@@ -31,10 +31,25 @@ namespace Stopwatch
       }
       if (time == 0)
       {
+        Console.Clear();
         System.Environment.Exit(0);
       }
 
-      Start(time * multiplier);
+      PreStart(time * multiplier);
+
+    }
+
+    static void PreStart(int time)
+    {
+      Console.Clear();
+      Console.WriteLine("Ready...");
+      Thread.Sleep(1000);
+      Console.WriteLine("Set...");
+      Thread.Sleep(1000);
+      Console.WriteLine("Go!");
+      Thread.Sleep(800);
+
+      Start(time);
 
     }
     static void Start(int time)
@@ -50,8 +65,8 @@ namespace Stopwatch
       }
 
       Console.Clear();
-      Console.WriteLine("Stopwatch finalizado");
-      Thread.Sleep(2000);
+      Console.WriteLine("Seu tempo acabou!\nVoltando para o início...");
+      Thread.Sleep(2100);
       Menu();
     }
   }
